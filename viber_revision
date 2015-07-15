@@ -1,5 +1,11 @@
 #!/bin/sh
 #echo `pwd`
+if [ -z "$1" ]
+  then
+    echo "No ticket number supplied. Pass ticket number to search for. For example 'viber_revision 12345'"
+    exit 1
+fi
+
 parent_branch=`git rev-parse --abbrev-ref HEAD`
 #echo $parent_branch
 commit_message="Merge branch 'IOS-$1' into '$parent_branch'"
@@ -15,3 +21,5 @@ fi
 
 viber_revision=`sh ./gitver -c $commit_hash`
 echo $viber_revision
+
+
